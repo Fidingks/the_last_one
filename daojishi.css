@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url("https://tucdn.wpon.cn/2023/07/07/53613358e2105.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#countdown1 {
+  height: 50px;
+  font-size: xx-large;
+  text-align: center;
+}
+#countdown2 {
+  height: 50px;
+  font-size: smalle;
+  text-align: center;
+}
+#shuRuKuang {
+  border: 0;
+  border-bottom: 2px solid #fff;
+  padding: 4px 2px;
+  display: block;
+  background: 0;
+  line-height: 1.5;
+  outline: none;
+  text-align: center;
+  transition: border-color 0.2s ease-in-out;
+  border-radius: 0;
+  color: #fff;
+  font-size: 2rem;
+  max-width: 90%;
+}
+
+#anNiu {
+  margin-left: -50px;
+  margin-right: 10px;
+  color: #ccc;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+input::placeholder {
+  color: #ccc;
+}
+input::-webkit-input-placeholder {
+  color: #ccc;
+}

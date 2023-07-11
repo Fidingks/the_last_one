@@ -1,63 +1,20 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  
-  
+<html>
   <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>牛烈的-274°空间</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-    
-
-    <style>  
-      body {
-        margin: 20px 40px 50px 30px;
-        background-color: #f0f0f0;
-        color: #333;
-      }
-       p {
-    color: blue;
-  }
-
-  span {
-    background-color: yellow;
-  }
-  h1 {
-      text-align: center;
-      font-family: 'Montserrat', sans-serif;
-      border: 2px solid purple;
-      padding: 10px;
-     }
-     img.avatar {
-      display: block;
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      margin-left: auto;
-    }
-    </style>
-
-    
-
-   
-
+    <title>倒计时</title>
+    <script src="daojishi.js"></script>
+    <link rel="stylesheet" href="daojishi.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   </head>
-
-
   <body>
-    <h1>~-牛烈的-274°空间-~</h1>
-    <img class="avatar" src="avatar.jpg" alt="头像">
-    <p>在此处开始写html代码</p>
-    <p>在此处开始写html代码</p>
-    <p>在此处开始写html代码</p>
-    <p><span>在此处开始写html代码</span></p>
-   
-  <p>在此处开始写html代码，下面将会实时显示效果。</p>
-  <img src="example.jpg" alt="示例图片">
-  
+    <div>
+      <div id="countdown1"></div>
+      <div id="countdown2"></div>
+      
+      <div class="box">
+        <input placeholder="最重要的事？" id="shuRuKuang" />
+        <span id="anNiu" onclick="change()">✔</span>
+      </div>
+    </div>
   </body>
-
-
 </html>

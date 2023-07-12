@@ -6,13 +6,16 @@ function countdown() {
   // 设置目标日期
   var targetDate1 = new Date("2026-6-1");
   var targetDate2 = new Date("2084-4-5");
+  var targetDate3 = new Date("2023-8-28");
 
   // 计算剩余天数
   var timeDiff1 = targetDate1 - currentDate;
   var timeDiff2 = targetDate2 - currentDate;
+  var timeDiff3 = targetDate3 - currentDate;
 
   var remainingDays1 = Math.floor(timeDiff1 / (1000 * 60 * 60 * 24));
   var remainingDays2 = Math.floor(timeDiff2 / (1000 * 60 * 60 * 24));
+  var remainingDays3 = Math.floor(timeDiff3 / (1000 * 60 * 60 * 24));
 
   // 更新页面上的倒计时文本
   document.getElementById("countdown1").innerHTML =
@@ -23,6 +26,9 @@ function countdown() {
 
   document.getElementById("countdown2").innerHTML =
     "距离挂掉还有 " + remainingDays2 + " 天";
+}
+document.getElementById("countdown2").innerHTML =
+    "距离暑假结束还有 " + remainingDays3 + " 天";
 }
 
 // 在页面加载完成后开始倒计时

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <title>倒计时</title>
@@ -16,5 +16,171 @@
         <span id="anNiu" onclick="change()">✔</span>
       </div>
     </div>
+  </body>
+</html>
+ -->
+ <!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <link rel="icon" type="image/x-icon" href="https://tucdn.wpon.cn/2023/07/02/f8ecfe229361e.png" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex布局</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        background-color: aliceblue;
+      }
+      /* * {
+        border: 1px solid black;
+      } */
+      .flex {
+        display: flex;
+      }
+      .baise {
+        background-color: rgb(248, 239, 230);
+      }
+      .flex1 {
+        flex: 1;
+      }
+      .column {
+        flex-direction: column;
+      }
+      .mg8 {
+        margin: 8px;
+      }
+      .mgt8 {
+        margin-top: 8px;
+      }
+      .shuju {
+        height: 100px;
+      }
+      .liebiao {
+        height: 160px;
+      }
+      .yingying {
+        box-shadow: rgb(0 0 0/ 20%) 0px 2px 1px -1px,
+          rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 /12%) 0px 1px 3px 0px;
+      }
+      .daohang {
+        padding: 10px 20px;
+        border-bottom: 1px solid rgb(223, 213, 213);
+        font-size: 14px;
+        color: #666;
+      }
+      .neirong::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* 导航栏样式 */
+      .juzhong{
+        text-align: center;
+      }
+      /* 导航栏样式 */
+
+      /* 页脚样式 */
+      footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 0.8em;
+        padding: 10px 0;
+        background-color: white; /* 使页脚背景不透明 */
+      }
+      footer img {
+        height: 16px;
+        width: 16px;
+        vertical-align: middle;
+      }
+      /* 页脚样式 */
+
+    </style>
+  </head>
+  <body class="flex">
+    <!-- 侧边栏 -->
+    <div
+      class="flex cebian column baise yinying"
+      style="width: 200px; z-index: 3"
+    >
+      <!-- 侧边头像 -->
+      <div
+        style="
+          padding: 10px;
+          align-items: center;
+          justify-content: center;
+          border-bottom: 1px solid #999;
+        "
+        class="flex"
+      >
+        <img alt="logo" src="https://tucdn.wpon.cn/2023/07/02/2d0562feb1ec3.jpg" alt="" width="40px" height="40px" />
+        <div style="margin-left: 10px">李建烨</div>
+      </div>
+      <!-- 导航栏 -->
+      <div class="flex1 ">
+        <div class="daohang juzhong "><a href="countdown.html">Countdown</a></div>
+        <div class="daohang juzhong ">导航</div>
+        <div class="daohang juzhong ">导航</div>
+        <div class="daohang juzhong ">导航</div>
+        <div class="daohang juzhong ">导航</div>
+        <div class="daohang juzhong ">导航</div>
+      </div>
+    </div>
+
+
+
+
+    <!-- 主区域 -->
+    <div class="flex1 flex1 column">
+
+
+      <!-- 头部兰 -->
+      <div style="height: 60px; z-index: 2" class="baise yingying"></div>
+      <!-- 内容区 -->
+      <div class="flex1 flex neirong" style="overflow: auto">
+        <!-- 左区 -->
+        <div style="flex: 3" class="flex column mg8">
+          <!-- 数据区 -->
+          <div class="flex shuju">
+            <!-- 数据块 -->
+            <div class="flex1 shuju baise mgr8 yingying"></div>
+            <div class="flex1 shuju baise mgr8 yingying"></div>
+            <div class="flex1 shuju baise mgr8 yingying"></div>
+            <div class="flex1 shuju baise yingying"></div>
+          </div>
+          <!-- 列表区 -->
+          <div class="fex column">
+            <!-- 列表项 -->
+            <div class="liebiao baise mgt8 yingying"></div>
+            <div class="liebiao baise mgt8 yingying"></div>
+            <div class="liebiao baise mgt8 yingying"></div>
+            <div class="liebiao baise mgt8 yingying"></div>
+            <!-- <div class="liebiao baise mgt8 yingying"></div> -->
+          </div>
+        </div>
+
+
+
+        <!-- 右区 -->
+        <div style="flex: 1" class="youqu flex column mgr8 mgt8">
+          <!-- 提示区 -->
+          <div style="height: 150px" class="baise yingying"></div>
+          <!-- 消息区 -->
+          <div style="height: 300px" class="baise mgt8 yingying"></div>
+          <!-- 其他区 -->
+          <!-- <div style="height: 300px" class="baise mgt8 yingying"></div> -->
+        </div>
+
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        © 2023 由 饥渴的下午创建
+        <img src="0CF1COMFS{1K}Z~D~%57H9.png" alt="已认证" />
+      </p>
+    </footer>
   </body>
 </html>

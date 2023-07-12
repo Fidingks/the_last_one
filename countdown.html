@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Countdown</title>
+    <style>
+      /* The Modal (background) */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+      }
+      /* 
+      Modal Content */
+      .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+      }
+
+      /* The Close Button */
+      .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="countdownContainer">
+      <div id="defaulttime"></div>
+    </div>
+    <button id="addCountdown">Add Countdown</button>
+    <button id="editCountdown">Edit Countdown</button>
+  
+    <!-- Add Countdown Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <form id="countdownForm">
+          <label for="date">Date:</label><br />
+          <input type="date" id="date" name="date" /><br />
+          <label for="description">Description:</label><br />
+          <input type="text" id="description" name="description" /><br />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+    </div>
+  
+    <!-- Edit Countdown Modal -->
+    <div id="editModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="edit-close">&times;</span>
+        <div id="countdownList"></div>
+      </div>
+    </div>
+  </body>
+    <script>
+      var modal = document.getElementById("myModal");
+      var btn = document.getElementById("addCountdown");
+      var span = document.getElementsByClassName("close")[0];
+      var form = document.getElementById("countdownForm");
+
+      btn.onclick = function () {
+        modal.style.display = "block";
+      };
+
+      span.onclick = function () {
+        modal.style.display = "none";
+      };
+
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+
+      form.onsubmit = function (e) {
+        e.preventDefault();
+        var date = document.getElementById("date").value;
+        var description = document.getElementById("description").value;
+
+        addCountdown(date, description);
+        modal.style.display = "none";
+      };
+      //Caculate
+      function calculateRemainingDays(targetDate) {
+        var currentDate = new Date(); // Get the current date
+        var target = new Date(targetDate); // Convert the target date string to a Date object
+        var timeDiff = target - currentDate; // Calculate the difference between the target date and the current date
+        var remainingDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24)); // Convert the time difference from milliseconds to days
+        return remainingDays;
+      }
+
+      function defaulttime() {
+        // 设置目标日期
+        var targetDate1 = new Date("2026-6-1");
+        remainingDays = calculateRemainingDays(targetDate1);
+        // 更新页面上的倒计时文本
+        document.getElementById("defaulttime").innerHTML =
+          "距离大学毕业还有 " + remainingDays + " 天";
+      }
+
+      //add new
+      function addCountdown(date, description) {
+    var countdownId = "countdown" + (document.getElementsByTagName("div").length + 1);
+    displayCountdown(countdownId, date, description);
+
+    // Save the countdown to local storage
+    var countdowns = JSON.parse(localStorage.getItem("countdowns")) || [];
+    countdowns.push({id: countdownId, date: date, description: description});
+    localStorage.setItem("countdowns", JSON.stringify(countdowns));
+}
+
+function displayCountdown(id, date, description) {
+    var countdownDiv = document.createElement("div");
+    countdownDiv.setAttribute("id", id);
+    var remainingDays = calculateRemainingDays(date);
+    countdownDiv.innerHTML = description + " " + remainingDays + " 天";
+    countdownContainer.appendChild(countdownDiv);
+}
+
+
+      window.onload = function () {
+        defaulttime();
+      };
+      // modify and delete
+      var editModal = document.getElementById("editModal");
+      var editBtn = document.getElementById("editCountdown");
+      var editSpan = document.getElementsByClassName("edit-close")[0];
+      var countdownListDiv = document.getElementById("countdownList");
+
+      editBtn.onclick = function () {
+        populateCountdownList();
+        editModal.style.display = "block";
+      };
+
+      editSpan.onclick = function () {
+        editModal.style.display = "none";
+      };
+
+      function populateCountdownList() {
+        var countdownContainer = document.getElementById("countdownContainer");
+        var countdowns = countdownContainer.getElementsByTagName("div");
+        countdownListDiv.innerHTML = ""; // Clear the countdown list
+
+        for (var i = 0; i < countdowns.length; i++) {
+          var countdown = countdowns[i];
+          var countdownItem = document.createElement("div");
+          countdownItem.innerHTML =
+            countdown.innerHTML +
+            "<button onclick='deleteCountdown(\"" +
+            countdown.id +
+            "\")'>Delete</button>" +
+            "<button onclick='modifyCountdown(\"" +
+            countdown.id +
+            "\")'>Modify</button>";
+          countdownListDiv.appendChild(countdownItem);
+        }
+      }
+
+      function deleteCountdown(id) {
+    var countdown = document.getElementById(id);
+    countdown.parentNode.removeChild(countdown);
+
+    // Remove the countdown from local storage
+    var countdowns = JSON.parse(localStorage.getItem("countdowns")) || [];
+    var index = countdowns.findIndex(countdown => countdown.id === id);
+    if (index !== -1) {
+        countdowns.splice(index, 1);
+        localStorage.setItem("countdowns", JSON.stringify(countdowns));
+    }
+
+    populateCountdownList();
+}
+
+function modifyCountdown(id) {
+    var newDate = prompt("Enter a new date for the countdown (YYYY-MM-DD):");
+    var newDescription = prompt("Enter a new description for the countdown:");
+    if (newDate && newDescription) {
+        var remainingDays = calculateRemainingDays(newDate);
+        var countdown = document.getElementById(id);
+        countdown.innerHTML = newDescription + " " + remainingDays + " 天";
+
+        // Update the countdown in local storage
+        var countdowns = JSON.parse(localStorage.getItem("countdowns")) || [];
+        var index = countdowns.findIndex(countdown => countdown.id === id);
+        if (index !== -1) {
+            countdowns[index] = {id: id, date: newDate, description: newDescription};
+            localStorage.setItem("countdowns", JSON.stringify(countdowns));
+        }
+
+        populateCountdownList();
+        editModal.style.display = "none";
+    }
+}
+
+
+window.onload = function() {
+    // Load the countdowns from local storage and display them on the page
+    var countdowns = JSON.parse(localStorage.getItem("countdowns")) || [];
+    countdowns.forEach(countdown => displayCountdown(countdown.id, countdown.date, countdown.description));
+};
+    </script>
+  </body>
+</html>

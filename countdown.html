@@ -49,8 +49,8 @@
       <div id="defaulttime"></div>
     </div>
     <button id="addCountdown">Add Countdown</button>
-    <button id="editCountdown">Edit Countdown</button>
-  
+    <button id="editCountdown">Edit Countdown</button><br>
+      <button id="backButton">返回上一页</button>
     <!-- Add Countdown Modal -->
     <div id="myModal" class="modal">
       <!-- Modal content -->
@@ -76,6 +76,14 @@
     </div>
   </body>
     <script>
+      // 获取按钮元素
+var backButton = document.getElementById('backButton');
+
+// 添加点击事件监听器
+backButton.addEventListener('click', function() {
+  // 返回上一页
+  window.history.back();
+});
       var modal = document.getElementById("myModal");
       var btn = document.getElementById("addCountdown");
       var span = document.getElementsByClassName("close")[0];
